@@ -80,35 +80,32 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 
-  /* ---- contact form (contacto.html) -> envía a Formspree ---- */
+  /* ---- contact form (contacto.html) ---- */
   var form = document.getElementById('contactForm');
   if(form){
     form.addEventListener('submit', function(e){
       e.preventDefault();
-      var self = this;
       var btn = this.querySelector('.submit-btn');
       var original = btn.textContent;
+      var self = this;
       btn.textContent = 'Enviando...';
       btn.disabled = true;
 
-      var data = new FormData(self);
-      data.append('_replyto', data.get('correo'));
-
-      fetch(self.action, {
+      fetch(this.action, {
         method: 'POST',
-        body: data,
+        body: new FormData(this),
         headers: { 'Accept': 'application/json' }
       }).then(function(response){
         if(response.ok){
           btn.textContent = '¡Mensaje enviado!';
-          self.reset();
+          setTimeout(function(){ btn.textContent = original; btn.disabled = false; self.reset(); }, 3000);
         } else {
-          btn.textContent = 'Error, intenta de nuevo';
+          btn.textContent = 'Hubo un error, intenta de nuevo';
+          setTimeout(function(){ btn.textContent = original; btn.disabled = false; }, 3000);
         }
       }).catch(function(){
-        btn.textContent = 'Error, intenta de nuevo';
-      }).finally(function(){
-        setTimeout(function(){ btn.textContent = original; btn.disabled = false; }, 2600);
+        btn.textContent = 'Hubo un error, intenta de nuevo';
+        setTimeout(function(){ btn.textContent = original; btn.disabled = false; }, 3000);
       });
     });
   }
@@ -130,4 +127,3 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
 });
-

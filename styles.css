@@ -479,9 +479,34 @@ footer{
 .footer-links a:hover{color:#fff;}
 .footer-values{font-size:0.85rem; color:var(--purple-light); line-height:2;}
 .footer-values strong{display:block; color:var(--gold-light); margin-bottom:6px; font-family:'Manrope',sans-serif;}
+.footer-social strong{display:block; color:var(--gold-light); margin-bottom:10px; font-family:'Manrope',sans-serif; font-size:0.9rem;}
+.footer-social-icons{display:flex; gap:10px;}
+.footer-social-icons a{
+  width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.08);
+  display:flex; align-items:center; justify-content:center; color:var(--cream);
+  transition:background .2s ease, transform .2s ease;
+}
+.footer-social-icons a:hover{background:rgba(255,255,255,0.18); transform:translateY(-2px);}
+.footer-social-icons svg{width:16px; height:16px;}
 .footer-bottom{
   max-width:1080px; margin:30px auto 0; padding-top:20px; border-top:1px solid rgba(255,255,255,0.12);
   font-size:0.78rem; color:var(--purple-light); text-align:center;
+}
+
+/* ---- whatsapp floating button ---- */
+.whatsapp-float{
+  position:fixed; bottom:22px; right:22px; z-index:200;
+  width:56px; height:56px; border-radius:50%;
+  background:#25D366; color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 26px rgba(37,211,102,0.45);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.whatsapp-float:hover{transform:scale(1.08); box-shadow:0 14px 32px rgba(37,211,102,0.55);}
+.whatsapp-float svg{width:28px; height:28px;}
+@media (max-width:600px){
+  .whatsapp-float{width:50px; height:50px; bottom:16px; right:16px;}
+  .whatsapp-float svg{width:24px; height:24px;}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -492,4 +517,3 @@ footer{
 .reveal.in{opacity:1; transform:translateY(0);}
 
 @keyframes fadein{from{opacity:0;} to{opacity:1;}}
-
