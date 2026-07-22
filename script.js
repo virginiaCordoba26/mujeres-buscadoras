@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function(){
       btn.disabled = true;
 
       var data = new FormData(self);
+      data.append('_replyto', data.get('correo'));
 
       fetch(self.action, {
         method: 'POST',
