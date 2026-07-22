@@ -428,6 +428,39 @@ form.contact{
 .form-note{font-size:0.8rem; color:var(--ink-soft); margin-top:12px; text-align:center;}
 @media (max-width:840px){ .unete-grid{grid-template-columns:1fr;} }
 
+/* ---- mapa / ubicación ---- */
+.map-section{padding:10px 24px 90px; max-width:1080px; margin:0 auto;}
+.map-heading{text-align:center; margin-bottom:28px;}
+.map-heading h2{font-size:1.7rem; color:var(--purple-deep); margin-bottom:8px;}
+.map-heading p{color:var(--ink-soft);}
+.map-grid{
+  display:grid; grid-template-columns:0.9fr 1.3fr; gap:28px; align-items:stretch;
+}
+.address-card{
+  background:#fff; border-radius:24px; padding:32px clamp(22px,4vw,34px);
+  border:1px solid rgba(106,44,143,0.10); box-shadow:0 18px 40px rgba(51,18,63,0.08);
+  display:flex; flex-direction:column; gap:18px;
+}
+.address-card .pin{
+  width:52px; height:52px; border-radius:50%; background:var(--cream-2);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.address-card .pin svg{width:24px; height:24px; color:var(--magenta-deep);}
+.address-card h3{color:var(--purple-deep); font-size:1.2rem; font-weight:600;}
+.address-card .addr-line{color:var(--ink); font-size:1.02rem; line-height:1.7; font-weight:500;}
+.address-card .addr-sub{color:var(--ink-soft); font-size:0.9rem; line-height:1.6;}
+.address-card .btn{align-self:flex-start; margin-top:6px;}
+.map-embed-wrap{
+  border-radius:24px; overflow:hidden; border:1px solid rgba(106,44,143,0.10);
+  box-shadow:0 18px 40px rgba(51,18,63,0.08); min-height:340px;
+}
+.map-embed-wrap iframe{width:100%; height:100%; min-height:340px; border:0; display:block;}
+@media (max-width:840px){
+  .map-grid{grid-template-columns:1fr;}
+  .map-embed-wrap{min-height:280px;}
+  .map-embed-wrap iframe{min-height:280px;}
+}
+
 /* ---- footer ---- */
 footer{
   background:var(--purple-deep); color:var(--cream);
@@ -459,3 +492,4 @@ footer{
 .reveal.in{opacity:1; transform:translateY(0);}
 
 @keyframes fadein{from{opacity:0;} to{opacity:1;}}
+
