@@ -80,17 +80,35 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 
-  /* ---- contact form (contacto.html) ---- */
+  /* ---- contact form (contacto.html) -> envía a Formspree ---- */
   var form = document.getElementById('contactForm');
   if(form){
     form.addEventListener('submit', function(e){
       e.preventDefault();
+      var self = this;
       var btn = this.querySelector('.submit-btn');
       var original = btn.textContent;
-      btn.textContent = '¡Mensaje recibido!';
+      btn.textContent = 'Enviando...';
       btn.disabled = true;
-      var self = this;
-      setTimeout(function(){ btn.textContent = original; btn.disabled = false; self.reset(); }, 2400);
+
+      var data = new FormData(self);
+
+      fetch(self.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response){
+        if(response.ok){
+          btn.textContent = '¡Mensaje enviado!';
+          self.reset();
+        } else {
+          btn.textContent = 'Error, intenta de nuevo';
+        }
+      }).catch(function(){
+        btn.textContent = 'Error, intenta de nuevo';
+      }).finally(function(){
+        setTimeout(function(){ btn.textContent = original; btn.disabled = false; }, 2600);
+      });
     });
   }
 
@@ -111,3 +129,4 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
 });
+
