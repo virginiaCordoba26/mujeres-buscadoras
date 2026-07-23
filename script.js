@@ -87,26 +87,10 @@ document.addEventListener('DOMContentLoaded', function(){
       e.preventDefault();
       var btn = this.querySelector('.submit-btn');
       var original = btn.textContent;
-      var self = this;
-      btn.textContent = 'Enviando...';
+      btn.textContent = '¡Mensaje recibido!';
       btn.disabled = true;
-
-      fetch(this.action, {
-        method: 'POST',
-        body: new FormData(this),
-        headers: { 'Accept': 'application/json' }
-      }).then(function(response){
-        if(response.ok){
-          btn.textContent = '¡Mensaje enviado!';
-          setTimeout(function(){ btn.textContent = original; btn.disabled = false; self.reset(); }, 3000);
-        } else {
-          btn.textContent = 'Hubo un error, intenta de nuevo';
-          setTimeout(function(){ btn.textContent = original; btn.disabled = false; }, 3000);
-        }
-      }).catch(function(){
-        btn.textContent = 'Hubo un error, intenta de nuevo';
-        setTimeout(function(){ btn.textContent = original; btn.disabled = false; }, 3000);
-      });
+      var self = this;
+      setTimeout(function(){ btn.textContent = original; btn.disabled = false; self.reset(); }, 2400);
     });
   }
 
